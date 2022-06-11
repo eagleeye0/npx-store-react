@@ -2,11 +2,13 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware } f
 import { productDetailReducer, productsReducer } from './reducers/productsReducer';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { authReducer } from './reducers/authReducer';
 
 
 const reducer = combineReducers({
     products: productsReducer,
     product: productDetailReducer,
+    auth: authReducer,
 })
 
 const middlware = [thunk];

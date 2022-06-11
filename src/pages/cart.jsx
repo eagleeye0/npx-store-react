@@ -34,7 +34,7 @@ export default function Cart() {
           </thead>
           <tbody className="align-middle">
             <tr>
-              <td className="align-middle"><img src="img/product-1.jpg" alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
+              <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-1.jpg"} alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
               <td className="align-middle">$150</td>
               <td className="align-middle">
                 <div className="input-group quantity mx-auto" style={{width: '100px'}}>
@@ -55,7 +55,7 @@ export default function Cart() {
               <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times" /></button></td>
             </tr>
             <tr>
-              <td className="align-middle"><img src="img/product-2.jpg" alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
+              <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-2.jpg"} alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
               <td className="align-middle">$150</td>
               <td className="align-middle">
                 <div className="input-group quantity mx-auto" style={{width: '100px'}}>
@@ -76,7 +76,7 @@ export default function Cart() {
               <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times" /></button></td>
             </tr>
             <tr>
-              <td className="align-middle"><img src="img/product-3.jpg" alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
+              <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-3.jpg"} alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
               <td className="align-middle">$150</td>
               <td className="align-middle">
                 <div className="input-group quantity mx-auto" style={{width: '100px'}}>
@@ -97,7 +97,7 @@ export default function Cart() {
               <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times" /></button></td>
             </tr>
             <tr>
-              <td className="align-middle"><img src="img/product-4.jpg" alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
+              <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-4.jpg"} alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
               <td className="align-middle">$150</td>
               <td className="align-middle">
                 <div className="input-group quantity mx-auto" style={{width: '100px'}}>
@@ -118,7 +118,7 @@ export default function Cart() {
               <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times" /></button></td>
             </tr>
             <tr>
-              <td className="align-middle"><img src="img/product-5.jpg" alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
+              <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-5.jpg"} alt="" style={{width: '50px'}} /> Colorful Stylish Shirt</td>
               <td className="align-middle">$150</td>
               <td className="align-middle">
                 <div className="input-group quantity mx-auto" style={{width: '100px'}}>

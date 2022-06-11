@@ -1,4 +1,16 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import { logout } from "../actions/authActions";
+
 export default function Navbar() {
+
+    const { isAuthenticated, user } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(logout());
+    }
+
     return <>
         <div className="container-fluid">
             <div className="row align-items-center py-3 px-xl-5">
@@ -24,10 +36,10 @@ export default function Navbar() {
                         <i className="fas fa-heart text-primary" />
                         <span className="badge">0</span>
                     </a>
-                    <a href="/cart" className="btn border">
+                    <Link to="/cart" className="btn border">
                         <i className="fas fa-shopping-cart text-primary" />
                         <span className="badge">0</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -72,9 +84,9 @@ export default function Navbar() {
                         </button>
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto py-0">
-                                <a href="/" className="nav-item nav-link">Home</a>
-                                <a href="shop" className="nav-item nav-link">Shop</a>
-                                <a href="detail.html" className="nav-item nav-link">Shop Detail</a>
+                                <Link className="nav-item nav-link" to="/">Home</Link>
+                                <Link className="nav-item nav-link" to="/shop/">Shop</Link>
+                                <Link className="nav-item nav-link" to="/cart/">Cart</Link>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                     <div className="dropdown-menu rounded-0 m-0">
@@ -82,11 +94,21 @@ export default function Navbar() {
                                         <a href="checkout.html" className="dropdown-item">Checkout</a>
                                     </div>
                                 </div>
-                                <a href="contact.html" className="nav-item nav-link">Contact</a>
+                                <a href="" className="nav-item nav-link">Contact</a>
                             </div>
                             <div className="navbar-nav ml-auto py-0">
-                                <a href="/login" className="nav-item nav-link">Login</a>
-                                <a href className="nav-item nav-link">Register</a>
+                                {isAuthenticated ? (
+                                    <>
+                                        <a className="nav-item nav-link">Dashboard</a>
+                                        <a className="nav-item nav-link" onClick={logoutHandler}>Logout</a>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link className="nav-item nav-link" to="/login">Login</Link>
+                                        <Link to="/register/" className="nav-item nav-link">Register</Link>
+                                    </>
+                                )
+                                }
                             </div>
                         </div>
                     </nav>
