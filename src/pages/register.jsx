@@ -1,30 +1,56 @@
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/loader";
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
 
 
 export default function Register() {
 
+    const { isAuthenticated, loading } = useSelector(state => state.auth);
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
-
-    let { loading } = useSelector(state => state.auth);
+    const [error, setError] = useState(null);
+    const [captchaVerify, setCaptchaVerify] = useState(false);
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const submitHandler = (e) => {
-        e.preventDefault();
-        dispatch(register(first_name, last_name, email, password));
-        navigate(-1);
+        if (captchaVerify) {
+            e.preventDefault();
+            dispatch(register(first_name, last_name, email, password));
+        }
+        setError("Error occured while registering user")
     }
+
+    async function onChange(value) {
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        const { data } = await axios.post("https://www.google.com/recaptcha/api/siteverify",
+            {
+                'secret': process.env.REACT_APP_RECAPTCHA_SECRET_KEY,
+                'response': value,
+            },
+            config);
+        setCaptchaVerify(data.success);
+    }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate(-1);
+        }
+    }, [isAuthenticated])
 
     return <div>
         <Navbar />
@@ -77,7 +103,10 @@ export default function Register() {
                                             required="required" data-validation-required-message="Please re-enter your password" />
                                         <p class="help-block text-danger"></p>
                                     </div>
-
+                                    <ReCAPTCHA sitekey="6LeNWUIgAAAAALMCiTigBlZ9xFcC01RctoHiMJnY" onChange={onChange} />
+                                    {error && <div className="alert alert-danger">
+                                        {error}</div>
+                                    }
                                     <div>
                                         <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Submit</button>
                                     </div>

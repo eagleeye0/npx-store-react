@@ -1,20 +1,24 @@
 import axios from "axios";
 
 export const getProducts = () => async (dispatch) => {
-    try{
+    try {
 
-        dispatch({ 
+        dispatch({
             type: 'GET_PRODUCTS_REQUEST'
         })
-
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
         const url = "/apiv1/all_products/";
-        const {data} = await axios.get(url);
+        const { data } = await axios.post(url, { "page_number": 1, "page_size": 9 }, config);
         dispatch({
             type: 'GET_PRODUCTS_SUCCESS',
             payload: data
         });
     }
-    catch(err){
+    catch (err) {
         dispatch({
             type: 'GET_PRODUCTS_FAILURE',
             payload: err.response.data.message
@@ -23,14 +27,14 @@ export const getProducts = () => async (dispatch) => {
 }
 
 export const getProductDetail = (product_id) => async (dispatch) => {
-    try{
+    try {
 
-        dispatch({ 
+        dispatch({
             type: 'GET_PRODUCT_DETAIL_REQUEST'
         })
 
         const url = "/apiv1/product/" + product_id;
-        const {data} = await axios.get(url);
+        const { data } = await axios.get(url);
 
         dispatch({
             type: 'GET_PRODUCT_DETAIL_SUCCESS',
@@ -38,7 +42,7 @@ export const getProductDetail = (product_id) => async (dispatch) => {
         });
 
     }
-    catch(err){
+    catch (err) {
         dispatch({
             type: 'GET_PRODUCT_DETAIL_FAILURE',
             payload: err.response.data.message

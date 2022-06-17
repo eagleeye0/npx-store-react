@@ -8,6 +8,11 @@ import { useEffect } from "react";
 import store from "./store";
 import { loadUser } from './actions/authActions';
 import Register from "./pages/register";
+import ForgotPassword from "./pages/forgotPassword";
+import Dashboard from "./pages/dashboard";
+import { RequireAuth } from './loginRouters';
+import Checkout from "./pages/checkout";
+
 
 export default function App() {
 
@@ -20,9 +25,27 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/shop/" element={<Shop />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/product/:product_id" element={<Product />} />
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth redirectTo="/login">
+            <Dashboard />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <RequireAuth redirectTo="/login">
+            <Checkout />
+          </RequireAuth>
+        }
+      />
+      {/* <PrivateRoute component={Dashboard} path="/dashboard" isAuthenticated={isAuthenticated} /> */}
     </Routes>
   </Router>
 }

@@ -1,5 +1,25 @@
-export default function Footer(){
-    return <>
+import axios from "axios";
+import { useState } from "react";
+
+export default function Footer() {
+
+  let [name, setName] = useState("");
+  let [email, setEmail] = useState("");
+
+  const submitHandler = () => {
+    console.log(name, email);
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    const data = { "email": email, "name": name };
+    axios.post("/apiv1/subscribe/", data, config);
+    name = "";
+    email = "";
+  }
+
+  return <>
     {/* Footer Start */}
     <div className="container-fluid bg-secondary text-dark mt-5 pt-5">
       <div className="row px-xl-5 pt-5">
@@ -38,12 +58,12 @@ export default function Footer(){
             </div>
             <div className="col-md-4 mb-5">
               <h5 className="font-weight-bold text-dark mb-4">Newsletter</h5>
-              <form action>
+              <form onSubmit={submitHandler}>
                 <div className="form-group">
-                  <input type="text" className="form-control border-0 py-4" placeholder="Your Name" required="required" />
+                  <input type="text" className="form-control border-0 py-4" value={name} placeholder="Your Name" onChange={(e) => { setName(e.target.value) }} required="required" />
                 </div>
                 <div className="form-group">
-                  <input type="email" className="form-control border-0 py-4" placeholder="Your Email" required="required" />
+                  <input type="email" className="form-control border-0 py-4" value={email} placeholder="Your Email" onChange={(e) => { setEmail(e.target.value) }} required="required" />
                 </div>
                 <div>
                   <button className="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
@@ -67,8 +87,8 @@ export default function Footer(){
       </div>
     </div>
     {/* Footer End */}
- 
+
     {/* Back to Top */}
     <a href="#" className="btn btn-primary back-to-top"><i className="fa fa-angle-double-up" /></a>
-    </>
+  </>
 }

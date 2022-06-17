@@ -99,7 +99,7 @@ export default function Navbar() {
                             <div className="navbar-nav ml-auto py-0">
                                 {isAuthenticated ? (
                                     <>
-                                        <a className="nav-item nav-link">Dashboard</a>
+                                        <Link className="nav-item nav-link" to="/dashboard">Dashboard</Link>
                                         <a className="nav-item nav-link" onClick={logoutHandler}>Logout</a>
                                     </>
                                 ) : (

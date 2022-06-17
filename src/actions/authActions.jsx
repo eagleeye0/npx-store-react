@@ -1,6 +1,8 @@
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export const login = (email, password) => async (dispatch) => {
+
     try {
 
         dispatch({ type: 'LOGIN_REQUEST' })
@@ -20,6 +22,7 @@ export const login = (email, password) => async (dispatch) => {
             type: 'LOGIN_SUCCESS',
             payload: data.user
         })
+        loadUser();
 
     } catch (error) {
         dispatch({

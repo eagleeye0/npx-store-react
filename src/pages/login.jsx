@@ -1,28 +1,35 @@
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from "../actions/authActions";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/loader";
 
 
 export default function Login() {
 
+    const { isAuthenticated, loading } = useSelector(state => state.auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    let { loading } = useSelector(state => state.auth);
+    const [error, setError] = useState(null);
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const submitHandler = (e) => {
-        console.log(email, password);
-        e.preventDefault();
-        dispatch(login(email, password));
-        navigate(-1);
+        setError("Error occured while logging in")
+        e.preventDefault()
+        dispatch(login(email, password))
     }
+
+    useEffect(() => {
+        console.log(error);
+        if (isAuthenticated) {
+            navigate(-1);
+        }
+    }, [isAuthenticated])
+
 
     return <div>
         <Navbar />
@@ -40,29 +47,32 @@ export default function Login() {
             </div>
             {/* Page Header End */}
 
-            <div class="container-fluid pt-5">
-                <div class="row px-xl-5">
-                    <div class="col-lg-7 mb-5">
-                        <div class="contact-form">
+            <div className="container-fluid pt-5">
+                <div className="row px-xl-5">
+                    <div className="col-lg-7 mb-5">
+                        <div className="contact-form">
                             <div id="success"></div>
                             {loading ? <Loader /> : (
                                 <form name="sentMessage" id="contactForm" novalidate="novalidate" onSubmit={submitHandler}>
 
-                                    <div class="control-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email" value={email}
+                                    <div className="control-group">
+                                        <input type="email" className="form-control" id="email" placeholder="Your Email" value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required="required" data-validation-required-message="Please enter your email" />
-                                        <p class="help-block text-danger"></p>
+                                        <p className="help-block text-danger"></p>
                                     </div>
-                                    <div class="control-group">
-                                        <input type="password" class="form-control" id="subject" placeholder="Password"
+                                    <div className="control-group">
+                                        <input type="password" className="form-control" id="subject" placeholder="Password"
                                             value={password} onChange={(e) => setPassword(e.target.value)}
                                             required="required" data-validation-required-message="Please enter a password" />
-                                        <p class="help-block text-danger"></p>
+                                        <p className="help-block text-danger"></p>
                                     </div>
-
+                                    <Link to="/forgot-password/" className="text-primary">Forgot Password?</Link>
+                                    {error && <div className="alert alert-danger">
+                                        {error}</div>
+                                    }
                                     <div>
-                                        <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Submit</button>
+                                        <button className="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Submit</button>
                                     </div>
                                 </form>
                             )}

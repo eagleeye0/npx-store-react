@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
@@ -169,7 +170,7 @@ export default function Cart() {
               <h5 className="font-weight-bold">Total</h5>
               <h5 className="font-weight-bold">$160</h5>
             </div>
-            <button className="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+            <Link to="/checkout" className="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</Link>
           </div>
         </div>
       </div>
