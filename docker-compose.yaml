@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: react-frontend:latest
+    container_name: frontend
+    command: > 
+      /bin/bash -c "
+      npm run start
+      "
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    networks:
+      - network1
+
+networks:
+  network1:
+    name: npx-api-network

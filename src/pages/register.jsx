@@ -1,3 +1,4 @@
+import React from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { useEffect, useState } from "react";
@@ -21,7 +22,7 @@ export default function Register() {
     const [captchaVerify, setCaptchaVerify] = useState(false);
 
     const dispatch = useDispatch();
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
     const submitHandler = (e) => {
         if (captchaVerify) {
@@ -48,7 +49,7 @@ export default function Register() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate(-1);
+            // navigate(-1);
         }
     }, [isAuthenticated])
 

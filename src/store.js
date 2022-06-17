@@ -1,3 +1,4 @@
+import React from "react";
 import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
 import { productDetailReducer, productsReducer } from './reducers/productsReducer';
 import thunk from 'redux-thunk';

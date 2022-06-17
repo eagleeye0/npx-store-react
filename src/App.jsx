@@ -1,3 +1,4 @@
+import React from "react";
 import Cart from "./pages/cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
