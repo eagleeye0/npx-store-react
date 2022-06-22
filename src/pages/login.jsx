@@ -10,22 +10,19 @@ import Loader from "../components/loader";
 
 export default function Login() {
 
-    const { isAuthenticated, loading } = useSelector(state => state.auth);
+    const { isAuthenticated, loading, error } = useSelector(state => state.auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const submitHandler = (e) => {
-        setError("Error occured while logging in")
         e.preventDefault()
         dispatch(login(email, password))
     }
 
     useEffect(() => {
-        console.log(error);
         if (isAuthenticated) {
             navigate(-1);
         }

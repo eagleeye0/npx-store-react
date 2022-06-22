@@ -1,7 +1,31 @@
 import React from 'react';
+import { useSyncExternalStore } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addItemToCart } from '../actions/cartActions';
+
 
 const ProductCard = (product) => {
+
+    const dispatch = useDispatch();
+
+    const { cartItems } = useSelector(state => state.cart)
+
+    const increaseQty = () => {
+        const id = product.product.id;
+        console.log(cartItems)
+        const item = cartItems.find(function (e) {
+            return e.product_id == id
+        })
+        const quantity = item ? item.quantity : 0;
+        const stock = 10;
+        const newQty = quantity + 1;
+
+        if (newQty > stock) return;
+
+        dispatch(addItemToCart(id, newQty))
+    }
+
     return (
         <div className="col-lg-4 col-md-6 col-sm-12 pb-1">
             <div className="card product-item border-0 mb-4">
@@ -16,7 +40,7 @@ const ProductCard = (product) => {
                 </div>
                 <div className="card-footer d-flex justify-content-between bg-light border">
                     <Link to={"/product/" + product.product.id} className="btn btn-sm text-dark p-0"><i className="fas fa-eye text-primary mr-1" />View Detail</Link>
-                    <a href className="btn btn-sm text-dark p-0"><i className="fas fa-shopping-cart text-primary mr-1" />Add To Cart</a>
+                    <a onClick={increaseQty} className="btn btn-sm text-dark p-0"><i className="fas fa-shopping-cart text-primary mr-1" />Add To Cart</a>
                 </div>
             </div>
         </div>

@@ -1,9 +1,13 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 
 export default function Checkout() {
+
+  const { cartItems } = useSelector(state => state.cart)
+
   return <div>
     <Navbar />
     <div>
@@ -28,56 +32,18 @@ export default function Checkout() {
                 </tr>
               </thead>
               <tbody className="align-middle">
-                <tr>
-                  <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-1.jpg"} alt="" style={{ width: '50px' }} /> Colorful Stylish Shirt</td>
-                  <td className="align-middle">$150</td>
-                  <td className="align-middle">
-                    <div className="input-group quantity mx-auto" style={{ width: '0px' }}>
-                      <span type="text" className="text-center">1</span>
-                    </div>
-                  </td>
-                  <td className="align-middle">$150</td>
-                </tr>
-                <tr>
-                  <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-2.jpg"} alt="" style={{ width: '50px' }} /> Colorful Stylish Shirt</td>
-                  <td className="align-middle">$150</td>
-                  <td className="align-middle">
-                    <div className="input-group quantity mx-auto" style={{ width: '0px' }}>
-                      <span type="text" className="text-center">1</span>
-                    </div>
-                  </td>
-                  <td className="align-middle">$150</td>
-                </tr>
-                <tr>
-                  <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-3.jpg"} alt="" style={{ width: '50px' }} /> Colorful Stylish Shirt</td>
-                  <td className="align-middle">$150</td>
-                  <td className="align-middle">
-                    <div className="input-group quantity mx-auto" style={{ width: '0px' }}>
-                      <span type="text" className="text-center">1</span>
-                    </div>
-                  </td>
-                  <td className="align-middle">$150</td>
-                </tr>
-                <tr>
-                  <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-4.jpg"} alt="" style={{ width: '50px' }} /> Colorful Stylish Shirt</td>
-                  <td className="align-middle">$150</td>
-                  <td className="align-middle">
-                    <div className="input-group quantity mx-auto" style={{ width: '0px' }}>
-                      <span type="text" className="text-center">1</span>
-                    </div>
-                  </td>
-                  <td className="align-middle">$150</td>
-                </tr>
-                <tr>
-                  <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-5.jpg"} alt="" style={{ width: '50px' }} /> Colorful Stylish Shirt</td>
-                  <td className="align-middle">$150</td>
-                  <td className="align-middle">
-                    <div className="input-group quantity mx-auto" style={{ width: '0px' }}>
-                      <span type="text" className="text-center">1</span>
-                    </div>
-                  </td>
-                  <td className="align-middle">$150</td>
-                </tr>
+                {cartItems.map(item => (
+                  <tr>
+                    <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-1.jpg"} alt="" style={{ width: '50px' }} />{item.product_name}</td>
+                    <td className="align-middle">{item.sale_price}</td>
+                    <td className="align-middle">
+                      <div className="input-group quantity mx-auto" style={{ width: '0px' }}>
+                        <span type="text" className="text-center">{item.quantity}</span>
+                      </div>
+                    </td>
+                    <td className="align-middle">$150</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

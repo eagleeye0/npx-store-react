@@ -1,5 +1,4 @@
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
 
 export const login = (email, password) => async (dispatch) => {
 
@@ -27,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: 'LOGIN_FAILURE',
-            payload: error.response.data.message
+            payload: error.response.data
         })
     }
 }

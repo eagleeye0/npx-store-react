@@ -12,24 +12,22 @@ import axios from "axios";
 
 export default function Register() {
 
-    const { isAuthenticated, loading } = useSelector(state => state.auth);
+    const { isAuthenticated, loading, error } = useSelector(state => state.auth);
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
-    const [error, setError] = useState(null);
     const [captchaVerify, setCaptchaVerify] = useState(false);
 
     const dispatch = useDispatch();
-    // let navigate = useNavigate();
+    let navigate = useNavigate();
 
     const submitHandler = (e) => {
+        e.preventDefault();
         if (captchaVerify) {
-            e.preventDefault();
             dispatch(register(first_name, last_name, email, password));
         }
-        setError("Error occured while registering user")
     }
 
     async function onChange(value) {
@@ -49,7 +47,7 @@ export default function Register() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            // navigate(-1);
+            navigate(-1);
         }
     }, [isAuthenticated])
 

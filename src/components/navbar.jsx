@@ -6,6 +6,13 @@ import { logout } from "../actions/authActions";
 export default function Navbar() {
 
     const { isAuthenticated, user } = useSelector(state => state.auth);
+    const { cartItems } = useSelector(state => state.cart);
+    var cartQuantity = 0
+
+    for (let item of cartItems) {
+        cartQuantity += item.quantity;
+    }
+
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
@@ -39,7 +46,7 @@ export default function Navbar() {
                     </a>
                     <Link to="/cart" className="btn border">
                         <i className="fas fa-shopping-cart text-primary" />
-                        <span className="badge">0</span>
+                        <span className="badge">{cartQuantity}</span>
                     </Link>
                 </div>
             </div>
