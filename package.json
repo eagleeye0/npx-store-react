@@ -43,5 +43,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://api:8000"
+  "proxy": "http://api:8000",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
