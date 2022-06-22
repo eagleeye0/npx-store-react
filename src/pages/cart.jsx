@@ -76,7 +76,7 @@ export default function Cart() {
                     <tr>
                       <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-2.jpg"} alt="" style={{ width: '50px' }} />
                         {item.product_name}</td>
-                      <td className="align-middle">$150</td>
+                      <td className="align-middle">₹{item.sale_price}</td>
                       <td className="align-middle">
                         <div className="input-group quantity mx-auto" style={{ width: '100px' }}>
                           <div className="input-group-btn">
