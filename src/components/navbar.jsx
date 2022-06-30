@@ -5,7 +5,7 @@ import { logout } from "../actions/authActions";
 
 export default function Navbar() {
 
-    const { isAuthenticated, user } = useSelector(state => state.auth);
+    const { isAuthenticated } = useSelector(state => state.auth);
     const { cartItems } = useSelector(state => state.cart);
     var cartQuantity = 0
 
@@ -63,7 +63,7 @@ export default function Navbar() {
                     <nav className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style={{ width: 'calc(100% - 30px)', zIndex: 1 }}>
                         <div className="navbar-nav w-100 overflow-hidden" style={{ height: '410px' }}>
                             <div className="nav-item dropdown">
-                                <a href="#" className="nav-link" data-toggle="dropdown">Dresses <i className="fa fa-angle-down float-right mt-1" /></a>
+                                <a href="#a" className="nav-link" data-toggle="dropdown">Dresses <i className="fa fa-angle-down float-right mt-1" /></a>
                                 <div className="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                     <a href className="dropdown-item">Men's Dresses</a>
                                     <a href className="dropdown-item">Women's Dresses</a>
@@ -96,19 +96,19 @@ export default function Navbar() {
                                 <Link className="nav-item nav-link" to="/shop/">Shop</Link>
                                 <Link className="nav-item nav-link" to="/cart/">Cart</Link>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                    <a href="#a" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                     <div className="dropdown-menu rounded-0 m-0">
                                         <a href="cart.html" className="dropdown-item">Shopping Cart</a>
                                         <a href="checkout.html" className="dropdown-item">Checkout</a>
                                     </div>
                                 </div>
-                                <a href="" className="nav-item nav-link">Contact</a>
+                                <a href="#a" className="nav-item nav-link">Contact</a>
                             </div>
                             <div className="navbar-nav ml-auto py-0">
                                 {isAuthenticated ? (
                                     <>
                                         <Link className="nav-item nav-link" to="/dashboard">Dashboard</Link>
-                                        <a className="nav-item nav-link" onClick={logoutHandler}>Logout</a>
+                                        <a href="#a" className="nav-item nav-link" onClick={logoutHandler}>Logout</a>
                                     </>
                                 ) : (
                                     <>

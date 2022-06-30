@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { addItemToCart, removeItemFromCart } from "../actions/cartActions";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import { useEffect } from "react";
-import Loader from "../components/loader";
 
 
 export default function Cart() {
@@ -20,7 +18,7 @@ export default function Cart() {
 
   const increaseQty = (id) => {
     const item = cartItems.find(function (e) {
-      return e.product_id == id
+      return e.product_id === id
     })
     const quantity = item ? item.quantity : 1;
     const stock = 10;
@@ -32,7 +30,6 @@ export default function Cart() {
   }
 
   const decreaseQty = (id, quantity) => {
-    console.log("decreasing  qty")
     const newQty = quantity - 1;
 
     if (newQty <= 0) return;

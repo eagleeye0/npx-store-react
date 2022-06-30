@@ -19,8 +19,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(getProductDetail(product_id))
-    console.log(product.id)
-  },[dispatch])
+  },[dispatch, product_id])
 
   return <div>
     <Navbar />
@@ -45,16 +44,16 @@ const Product = () => {
             <div id="product-carousel" className="carousel slide" data-ride="carousel">
               <div className="carousel-inner border">
                 <div className="carousel-item active">
-                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-1.jpg"} alt="Image" />
+                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-1.jpg"} alt="product_image" />
                 </div>
                 <div className="carousel-item">
-                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-2.jpg"} alt="Image" />
+                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-2.jpg"} alt="product_image" />
                 </div>
                 <div className="carousel-item">
-                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-3.jpg"} alt="Image" />
+                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-3.jpg"} alt="product_image" />
                 </div>
                 <div className="carousel-item">
-                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-4.jpg"} alt="Image" />
+                  <img className="w-100 h-100" src={process.env.PUBLIC_URL + "/img/product-4.jpg"} alt="product_image" />
                 </div>
               </div>
               <a className="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -221,7 +220,7 @@ const Product = () => {
                   <div className="col-md-6">
                     <h4 className="mb-4">1 review for "Colorful Stylish Shirt"</h4>
                     <div className="media mb-4">
-                      <img src={process.env.PUBLIC_URL + "/img/user.jpg"} alt="Image" className="img-fluid mr-3 mt-1" style={{ width: '45px' }} />
+                      <img src={process.env.PUBLIC_URL + "/img/user.jpg"} alt="product_image" className="img-fluid mr-3 mt-1" style={{ width: '45px' }} />
                       <div className="media-body">
                         <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
                         <div className="text-primary mb-2">

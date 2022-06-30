@@ -2,21 +2,19 @@ import React from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { login } from "../actions/authActions";
-import { useNavigate } from "react-router-dom";
-import Loader from "../components/loader";
+// import { useDispatch } from 'react-redux'
+// import { useNavigate } from "react-router-dom";
+// import { login } from "../actions/authActions";
 
 
 export default function ForgotPassword() {
 
     const [email, setEmail] = useState('');
 
-    const dispatch = useDispatch();
-    let navigate = useNavigate();
+    // const dispatch = useDispatch();
+    // let navigate = useNavigate();
 
     const submitHandler = (e) => {
-        // console.log(email, password);
         // e.preventDefault();
         // dispatch(login(email, password));
         // navigate(-1);

@@ -8,7 +8,6 @@ export default function Footer() {
   let [email, setEmail] = useState("");
 
   const submitHandler = () => {
-    console.log(name, email);
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -38,23 +37,23 @@ export default function Footer() {
             <div className="col-md-4 mb-5">
               <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
               <div className="d-flex flex-column justify-content-start">
-                <a className="text-dark mb-2" href="index.html"><i className="fa fa-angle-right mr-2" />Home</a>
-                <a className="text-dark mb-2" href="shop.html"><i className="fa fa-angle-right mr-2" />Our Shop</a>
-                <a className="text-dark mb-2" href="detail.html"><i className="fa fa-angle-right mr-2" />Shop Detail</a>
-                <a className="text-dark mb-2" href="cart.html"><i className="fa fa-angle-right mr-2" />Shopping Cart</a>
-                <a className="text-dark mb-2" href="checkout.html"><i className="fa fa-angle-right mr-2" />Checkout</a>
-                <a className="text-dark" href="contact.html"><i className="fa fa-angle-right mr-2" />Contact Us</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Home</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Our Shop</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Shop Detail</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Shopping Cart</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Checkout</a>
+                <a className="text-dark" href="#a"><i className="fa fa-angle-right mr-2" />Contact Us</a>
               </div>
             </div>
             <div className="col-md-4 mb-5">
               <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
               <div className="d-flex flex-column justify-content-start">
-                <a className="text-dark mb-2" href="index.html"><i className="fa fa-angle-right mr-2" />Home</a>
-                <a className="text-dark mb-2" href="shop.html"><i className="fa fa-angle-right mr-2" />Our Shop</a>
-                <a className="text-dark mb-2" href="detail.html"><i className="fa fa-angle-right mr-2" />Shop Detail</a>
-                <a className="text-dark mb-2" href="cart.html"><i className="fa fa-angle-right mr-2" />Shopping Cart</a>
-                <a className="text-dark mb-2" href="checkout.html"><i className="fa fa-angle-right mr-2" />Checkout</a>
-                <a className="text-dark" href="contact.html"><i className="fa fa-angle-right mr-2" />Contact Us</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Home</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Our Shop</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Shop Detail</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Shopping Cart</a>
+                <a className="text-dark mb-2" href="#a"><i className="fa fa-angle-right mr-2" />Checkout</a>
+                <a className="text-dark" href="#a"><i className="fa fa-angle-right mr-2" />Contact Us</a>
               </div>
             </div>
             <div className="col-md-4 mb-5">
@@ -77,7 +76,7 @@ export default function Footer() {
       <div className="row border-top border-light mx-xl-5 py-4">
         <div className="col-md-6 px-xl-0">
           <p className="mb-md-0 text-center text-md-left text-dark">
-            © <a className="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
+            © <a className="text-dark font-weight-semi-bold" href="#a">Your Site Name</a>. All Rights Reserved. Designed
             by
             <a className="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
           </p>
@@ -90,6 +89,6 @@ export default function Footer() {
     {/* Footer End */}
 
     {/* Back to Top */}
-    <a href="#" className="btn btn-primary back-to-top"><i className="fa fa-angle-double-up" /></a>
+    <a href="#a" className="btn btn-primary back-to-top"><i className="fa fa-angle-double-up" /></a>
   </>
 }

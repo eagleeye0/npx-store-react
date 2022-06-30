@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { login } from "../actions/authActions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/loader";
@@ -15,7 +15,6 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const submitHandler = (e) => {
@@ -27,7 +26,7 @@ export default function Login() {
         if (isAuthenticated) {
             navigate(-1);
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate])
 
 
     return <div>

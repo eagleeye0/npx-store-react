@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSyncExternalStore } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addItemToCart } from '../actions/cartActions';
@@ -13,9 +12,8 @@ const ProductCard = (product) => {
 
     const increaseQty = () => {
         const id = product.product.id;
-        console.log(cartItems)
         const item = cartItems.find(function (e) {
-            return e.product_id == id
+            return e.product_id === id
         })
         const quantity = item ? item.quantity : 0;
         const stock = 10;
@@ -40,7 +38,7 @@ const ProductCard = (product) => {
                 </div>
                 <div className="card-footer d-flex justify-content-between bg-light border">
                     <Link to={"/product/" + product.product.id} className="btn btn-sm text-dark p-0"><i className="fas fa-eye text-primary mr-1" />View Detail</Link>
-                    <a onClick={increaseQty} className="btn btn-sm text-dark p-0"><i className="fas fa-shopping-cart text-primary mr-1" />Add To Cart</a>
+                    <button onClick={increaseQty} className="btn btn-sm text-dark p-0"><i className="fas fa-shopping-cart text-primary mr-1" />Add To Cart</button>
                 </div>
             </div>
         </div>

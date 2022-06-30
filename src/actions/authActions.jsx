@@ -57,7 +57,6 @@ export const register = (first_name, last_name, email, password) => async (dispa
         login(email, password)(dispatch)
 
     } catch (error) {
-        console.log(error);
         dispatch({
             type: 'LOGIN_FAILURE',
             payload: error.response.data.message
@@ -89,13 +88,10 @@ export const loadUser = () => async (dispatch,getState) => {
 function addCartToDb(cart) {
     const cartItems = cart.cartItems;
     for(var i=0;i<cartItems.length;i++){
-        console.log(cartItems[i]);
         const id = cartItems[i].product_id;
         const quantity = cartItems[i].quantity;
-        console.log('/apiv1/update-cart/' + id + '/' + quantity)
         axios.get('/apiv1/update-cart/' + id + '/' + quantity)
     }
-    console.log("updated")
 }
 
 export const logout = () => async (dispatch) => {
@@ -107,7 +103,10 @@ export const logout = () => async (dispatch) => {
         })
 
     } catch (error) {
-        console.log(error);
+
+        dispatch({
+            type: 'LOGOUT_FAILURE'
+        })
     }
 }
 

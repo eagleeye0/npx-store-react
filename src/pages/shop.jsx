@@ -171,9 +171,9 @@ export default function Shop() {
                       Sort by
                     </button>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                      <a className="dropdown-item" href="#">Latest</a>
-                      <a className="dropdown-item" href="#">Popularity</a>
-                      <a className="dropdown-item" href="#">Best Rating</a>
+                      <a className="dropdown-item" href="#a">Latest</a>
+                      <a className="dropdown-item" href="#a">Popularity</a>
+                      <a className="dropdown-item" href="#a">Best Rating</a>
                     </div>
                   </div>
                 </div>
@@ -187,16 +187,16 @@ export default function Shop() {
                     <nav aria-label="Page navigation">
                       <ul className="pagination justify-content-center mb-3">
                         <li className="page-item disabled">
-                          <a className="page-link" href="#" aria-label="Previous">
+                          <a className="page-link" href="#a" aria-label="Previous">
                             <span aria-hidden="true">«</span>
                             <span className="sr-only">Previous</span>
                           </a>
                         </li>
-                        <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                        <li className="page-item"><a className="page-link" href="#">2</a></li>
-                        <li className="page-item"><a className="page-link" href="#">3</a></li>
+                        <li className="page-item active"><a className="page-link" href="#a">1</a></li>
+                        <li className="page-item"><a className="page-link" href="#a">2</a></li>
+                        <li className="page-item"><a className="page-link" href="#a">3</a></li>
                         <li className="page-item">
-                          <a className="page-link" href="#" aria-label="Next">
+                          <a className="page-link" href="#a" aria-label="Next">
                             <span aria-hidden="true">»</span>
                             <span className="sr-only">Next</span>
                           </a>
