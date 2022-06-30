@@ -18,10 +18,10 @@ export const getProducts = () => async (dispatch) => {
             payload: data
         });
     }
-    catch (err) {
+    catch (error) {
         dispatch({
             type: 'GET_PRODUCTS_FAILURE',
-            payload: err.response.data.message
+            payload: error.response.data.message
         });
     }
 }

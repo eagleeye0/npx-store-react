@@ -18,12 +18,7 @@ export const authReducer = (state = { user: null, isAuthenticated: false }, acti
             }
         case 'LOGIN_FAILURE':
         case 'REGISTER_USER_FAILURE':
-            return {
-                loading: false,
-                isAuthenticated: false,
-                error: action.payload,
-            }
-        case 'GET_USER_INFO_FAILURE':
+            case 'GET_USER_INFO_FAILURE':
             return {
                 loading: false,
                 isAuthenticated: false,

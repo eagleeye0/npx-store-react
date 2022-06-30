@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login } from "../actions/authActions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/loader";
+import store from "../store";
 
 
 export default function Login() {
@@ -19,7 +20,7 @@ export default function Login() {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(login(email, password))
+        store.dispatch(login(email, password))
     }
 
     useEffect(() => {

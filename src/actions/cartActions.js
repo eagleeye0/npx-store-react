@@ -2,6 +2,11 @@ import axios from "axios";
 
 export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
     const { data } = await axios.get(`/apiv1/product/${id}`)
+    const isAuthenticated = getState().auth.isAuthenticated;
+
+    if(isAuthenticated){
+        await axios.get('/apiv1/update-cart/' + id + '/' + quantity);
+    }
 
     dispatch({
         type: 'ADD_TO_CART',
@@ -20,6 +25,11 @@ export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
 }
 
 export const removeItemFromCart = (id) => async (dispatch, getState) => {
+    const isAuthenticated = getState().auth.isAuthenticated;
+
+    if(isAuthenticated){
+        await axios.get('/apiv1/update-cart/' + id + '/0');
+    }
 
     dispatch({
         type: 'REMOVE_ITEM_CART',

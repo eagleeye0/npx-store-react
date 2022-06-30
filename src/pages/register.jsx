@@ -49,7 +49,7 @@ export default function Register() {
         if (isAuthenticated) {
             navigate(-1);
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate])
 
     return <div>
         <Navbar />

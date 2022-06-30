@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch,getState) => {
 
     try {
 
@@ -21,12 +21,12 @@ export const login = (email, password) => async (dispatch) => {
             type: 'LOGIN_SUCCESS',
             payload: data.user
         })
-        loadUser();
+        loadUser()(dispatch,getState)
 
     } catch (error) {
         dispatch({
             type: 'LOGIN_FAILURE',
-            payload: error.response.data
+            payload: error.response.data.message
         })
     }
 }
@@ -65,23 +65,37 @@ export const register = (first_name, last_name, email, password) => async (dispa
     }
 }
 
-export const loadUser = () => async (dispatch) => {
+export const loadUser = () => async (dispatch,getState) => {
     try {
-
+        
         dispatch({ type: 'GET_USER_INFO_REQUEST' })
-
+        
         const { data } = await axios.get('/apiv1/me/')
-
+        
         dispatch({
             type: 'GET_USER_INFO_SUCCESS',
             payload: data,
         })
+
+        addCartToDb(getState().cart)
     }
     catch (error) {
         dispatch({
             type: 'GET_USER_INFO_FAILURE',
         })
     }
+}
+
+function addCartToDb(cart) {
+    const cartItems = cart.cartItems;
+    for(var i=0;i<cartItems.length;i++){
+        console.log(cartItems[i]);
+        const id = cartItems[i].product_id;
+        const quantity = cartItems[i].quantity;
+        console.log('/apiv1/update-cart/' + id + '/' + quantity)
+        axios.get('/apiv1/update-cart/' + id + '/' + quantity)
+    }
+    console.log("updated")
 }
 
 export const logout = () => async (dispatch) => {
