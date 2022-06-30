@@ -40,6 +40,36 @@ export const removeItemFromCart = (id) => async (dispatch, getState) => {
 
 }
 
+export function addCartToDb(cart) {
+    const cartItems = cart.cartItems;
+    for(var i=0;i<cartItems.length;i++){
+        const id = cartItems[i].product_id;
+        const quantity = cartItems[i].quantity;
+        axios.get('/apiv1/update-cart/' + id + '/' + quantity)
+    }
+}
+
+export const loadCartFromDb = (user_id) => async (dispatch, getState) => {
+    const { data } = await axios.get('/apiv1/get-cart-items/')
+
+
+
+    // dispatch({
+    //     type: 'LOAD_CART_ITEMS',
+    //     payload: {
+    //         product_id: data.id,
+    //         product_name: data.product_name,
+    //         mrp_price: data.mrp_price,
+    //         sale_price: data.sale_price,
+    //         // image: data.images[0].url,
+    //         // stock: data.stock,
+    //         quantity: data.quantity
+    //     }
+    // })
+
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
 export const saveShippingInfo = (data) => async (dispatch) => {
 
     dispatch({
