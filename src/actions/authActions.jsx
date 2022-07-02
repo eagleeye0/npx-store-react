@@ -1,5 +1,5 @@
 import axios from "axios"
-import { addCartToDb } from "./cartActions"
+import { addCartToDb, loadCartFromDb } from "./cartActions"
 
 export const login = (email, password) => async (dispatch,getState) => {
 
@@ -27,7 +27,7 @@ export const login = (email, password) => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: 'LOGIN_FAILURE',
-            payload: error.response.data.message
+            payload: error.response.data
         })
     }
 }
@@ -60,7 +60,7 @@ export const register = (first_name, last_name, email, password) => async (dispa
     } catch (error) {
         dispatch({
             type: 'LOGIN_FAILURE',
-            payload: error.response.data.message
+            payload: error.response.data
         })
     }
 }
@@ -77,7 +77,9 @@ export const loadUser = () => async (dispatch,getState) => {
             payload: data,
         })
 
-        addCartToDb(getState().cart)
+        await addCartToDb(getState().cart)
+        loadCartFromDb()(dispatch, getState)
+        
     }
     catch (error) {
         dispatch({

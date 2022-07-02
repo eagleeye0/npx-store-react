@@ -73,7 +73,7 @@ export default function Cart() {
                     <tr>
                       <td className="align-middle"><img src={process.env.PUBLIC_URL + "/img/product-2.jpg"} alt="" style={{ width: '50px' }} />
                         {item.product_name}</td>
-                      <td className="align-middle">₹{item.sale_price}</td>
+                      <td className="align-middle">Rs. {item.sale_price}</td>
                       <td className="align-middle">
                         <div className="input-group quantity mx-auto" style={{ width: '100px' }}>
                           <div className="input-group-btn">
@@ -89,7 +89,7 @@ export default function Cart() {
                           </div>
                         </div>
                       </td>
-                      <td className="align-middle">$150</td>
+                      <td className="align-middle">Rs. {item.quantity * item.sale_price}</td>
                       <td className="align-middle"><button onClick={() => removeCartItemHandler(item.product_id)} className="btn btn-sm btn-primary"><i className="fa fa-times" /></button></td>
                     </tr>
                   ))}
@@ -118,13 +118,13 @@ export default function Cart() {
                 </div>
                 <div className="d-flex justify-content-between">
                   <h6 className="font-weight-medium">Shipping</h6>
-                  <h6 className="font-weight-medium">$10</h6>
+                  <h6 className="font-weight-medium">Free</h6>
                 </div>
               </div>
               <div className="card-footer border-secondary bg-transparent">
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
-                  <h5 className="font-weight-bold">$160</h5>
+                  <h5 className="font-weight-bold">Rs. 1600</h5>
                 </div>
                 {cartItems.length !== 0 && <Link to="/checkout" className="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</Link>}
               </div>

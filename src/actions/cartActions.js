@@ -13,10 +13,9 @@ export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
         payload: {
             product_id: data.id,
             product_name: data.product_name,
-            mrp_price: data.mrp_price,
             sale_price: data.sale_price,
+            // sale_price: data.sale_price,
             // image: data.images[0].url,
-            // stock: data.stock,
             quantity: quantity
         }
     })
@@ -40,32 +39,32 @@ export const removeItemFromCart = (id) => async (dispatch, getState) => {
 
 }
 
-export function addCartToDb(cart) {
+export async function addCartToDb(cart) {
     const cartItems = cart.cartItems;
     for(var i=0;i<cartItems.length;i++){
         const id = cartItems[i].product_id;
         const quantity = cartItems[i].quantity;
-        axios.get('/apiv1/update-cart/' + id + '/' + quantity)
+        await axios.get('/apiv1/update-cart/' + id + '/' + quantity)
     }
 }
 
-export const loadCartFromDb = (user_id) => async (dispatch, getState) => {
-    const { data } = await axios.get('/apiv1/get-cart-items/')
-
-
-
-    // dispatch({
-    //     type: 'LOAD_CART_ITEMS',
-    //     payload: {
-    //         product_id: data.id,
-    //         product_name: data.product_name,
-    //         mrp_price: data.mrp_price,
-    //         sale_price: data.sale_price,
-    //         // image: data.images[0].url,
-    //         // stock: data.stock,
-    //         quantity: data.quantity
-    //     }
-    // })
+export const loadCartFromDb = () => async (dispatch, getState) => {
+    try {
+        
+        dispatch({ type: 'GET_CART_ITEMS_REQUEST' })
+        
+        const { data } = await axios.get('/apiv1/get-cart-items/')
+        console.log(data);
+        
+        const cartItems = data.cart_items
+        for(var i=0;i<cartItems.length;i++){
+            dispatch(addItemToCart(cartItems[i].product_id, cartItems[i].quantity))
+        }
+        
+    }
+    catch (error) {
+        
+    }
 
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }

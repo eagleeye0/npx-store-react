@@ -1,7 +1,7 @@
 export const cartReducer = (state = { cartItems: [], shippingInfo: {} }, action) => {
     switch (action.type) {
 
-        case 'LOAD_CART_ITEMS':
+        case 'GET_CART_ITEMS_SUCCESS':
             return {
                 cartItems: action.payload
             }
